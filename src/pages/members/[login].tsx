@@ -3,9 +3,9 @@ import { useRouter } from 'next/router'
 
 export default function Member({ user }) {
 
-    const {isFallBack} = useRouter();
+    const { isFallback  } = useRouter();
     
-    if(isFallBack){
+    if(isFallback ){
         return <p>Carregando...</p>;
     }
 
