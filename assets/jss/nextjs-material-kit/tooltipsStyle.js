@@ -14,7 +14,7 @@ const tooltipsStyle = {
     fontFamily: '"Helvetica Neue",Helvetica,Arial,sans-serif',
     fontSize: "0.875em",
     fontStyle: "normal",
-    fontWeight: "400",
+    fontWeight: 400,
     textShadow: "none",
     textTransform: "none",
     letterSpacing: "normal",

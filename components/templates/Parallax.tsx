@@ -14,7 +14,7 @@ import styles from "../../assets/jss/nextjs-material-kit/components/parallaxStyl
 const useStyles = makeStyles((_: Theme) =>(
   createStyles({
     parallax: {
-      height: "90vh",
+      height: "100vh",
       maxHeight: "1000px",
       overflow: "hidden",
       position: "relative",
