@@ -1,7 +1,7 @@
 const Memories = [
     {
         "id":1,
-        "date":"2020-29-01T00:00:00",
+        "date":"2020-29-01T12:59-0500",
         "searchTerm": "teatro da memoria",
         "lang": "pt",
         "maximumSentences": 10,

@@ -167,7 +167,7 @@ const useStyles = makeStyles((theme: Theme) => (
 ));
 
 type Props = {
-  children: React.ReactNode
+  children?: React.ReactNode
   className?: string
 }
 
@@ -175,6 +175,7 @@ type Props = {
 export const HeaderLinks = function HeaderLinks(props: Props) {
   const classes = useStyles();
   return (
+    
     <List className={classes.list}>
       <ListItem className={classes.listItem}>
         <Link href="/memories/1">
@@ -190,7 +191,16 @@ export const HeaderLinks = function HeaderLinks(props: Props) {
       </ListItem>
 
       <ListItem className={classes.listItem}>
-        <CustomDropdown
+      <RegularButton
+          href="https://www.creative-tim.com/product/nextjs-material-kit?ref=njsmk-navbar"
+          color="transparent"
+          target="_blank"
+          className={classes.navLink}
+        >
+
+          <Apps  /> Experiencia
+        </RegularButton>
+        {/* <CustomDropdown
           noLiPadding
           navDropdown
           buttonText="Esperiencia"
@@ -212,7 +222,7 @@ export const HeaderLinks = function HeaderLinks(props: Props) {
             </a>
           ]}
 
-        />
+        /> */}
       </ListItem>
 
       <ListItem className={classes.listItem}>

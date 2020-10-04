@@ -68,7 +68,7 @@ export const SectionBasics = function SectionBasics(){
                   <small> que lhe vem a cabeça </small>
                 </h3>
               </div>
-              <GridContainer justify="center">
+              <GridContainer>
                 <GridItem xs={12} sm={12} md={8}>
                   <Button color="primary">Default</Button>
                   
@@ -95,7 +95,7 @@ export const SectionBasics = function SectionBasics(){
             <div className={classes.space70} />
             <div id="checkRadios">
               <GridContainer>
-                <GridItem xs={12} sm={6} md={4} lg={3}>
+                <GridItem xs={12} sm={6} md={4} >
                   <div className={classes.title}>
                     <h3>Checkboxes</h3>
                   </div>

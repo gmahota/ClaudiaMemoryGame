@@ -15,8 +15,8 @@ import Drawer from "@material-ui/core/Drawer";
 // @material-ui/icons
 import Menu from "@material-ui/icons/Menu";
 // core components
-import
-{ container,
+import {
+container,
 hexToRGBAlpha,
 defaultFont,
 primaryColor,
@@ -27,9 +27,10 @@ dangerColor,
 roseColor,
 transition,
 boxShadow,
-drawerWidth } from "../../assets/jss/nextjs-material-kit.js";
+drawerWidth
+} from "../../assets/jss/nextjs-material-kit.js";
 
-const useStyles = makeStyles((_: Theme)=>(
+const useStyles = makeStyles((_: Theme) => (
   createStyles({
     appBar: {
       display: "flex",
@@ -184,15 +185,15 @@ type Props = {
   children: React.ReactNode
   className?: string,
   color?: string,
-  rightLinks?:any,
-  leftLinks?:any,
+  rightLinks?: any,
+  leftLinks?: any,
   brand?: string,
   fixed?: boolean,
   absolute?: boolean,
   changeColorOnScroll: any
 }
 
-export const Header = function Header(props:Props) {
+export const Header = function Header(props: Props) {
   const classes = useStyles();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   React.useEffect(() => {
@@ -249,8 +250,8 @@ export const Header = function Header(props:Props) {
               {leftLinks}
             </Hidden>
           ) : (
-            brandComponent
-          )}
+              brandComponent
+            )}
         </div>
         <Hidden smDown implementation="css">
           {rightLinks}

@@ -2,21 +2,44 @@ import console from 'console';
 import { GetStaticProps, GetStaticPaths } from 'next';
 import { useRouter } from 'next/router'
 import { useCallback, useEffect, useState } from 'react';
+
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+
 import {
     Memories,
     getMemorie
 } from '../../assets/data/memories'
 import { MemorieCard } from "../../components/Card"
+import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
 
+import Moment from 'react-moment';
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    container: {
+      display: 'flex',
+      flexWrap: 'wrap',
+    },
+    textField: {
+      marginLeft: theme.spacing(1),
+      marginRight: theme.spacing(1),
+      width: 200,
+    },
+  }),
+);
 
 type PropsButton = {
-    nextImage: any
-    previousImage: any
+    nextImage?: any
+    previousImage?: any
 }
 
 export default function Member({ memorie }) {
     const [currentSlide, setCurrentSlide] = useState(0)
-    
+
+    const classes = useStyles();
+
     const { isFallback } = useRouter();
 
     if (isFallback) {
@@ -26,7 +49,7 @@ export default function Member({ memorie }) {
     // State transitions
     var actions = {
         toggleNext: function (): void {
-            
+
             var current = currentSlide;
             var next = current + 1;
             if (next > memorie.sentences.length - 1) {
@@ -43,7 +66,7 @@ export default function Member({ memorie }) {
             setCurrentSlide(prev);
         },
         toggleSlide: function (id: string): void {
-            
+
             var index = memorie.sentences.map(function (el) {
                 return (
                     el.id
@@ -53,54 +76,65 @@ export default function Member({ memorie }) {
             setCurrentSlide(currentIndex);
         }
     }
+
     const BackArrow = (props: PropsButton) => (
         <div onClick={props.previousImage} style={{ fontSize: '2em', marginLeft: '12px' }}>
             <i className="fa fa-angle-left fa-2x" aria-hidden="true"></i>
         </div>
     )
-    
+
     const NextArrow = (props: PropsButton) => (
         <div onClick={props.nextImage} style={{ fontSize: '2em', marginLeft: '12px' }}>
             <i className="fa fa-angle-right fa-2x" aria-hidden="true"></i>
         </div>
     )
     
+    const dateToFormat = new Date(memorie.date);
+
     return (
-        <div>
-            <p>Dia: {memorie.id}</p>
-            <p>Tema: {memorie.searchTerm}</p>
+        <Container maxWidth="sm">
+            <form className={classes.container} noValidate>
+                <Typography variant="subtitle1">
+                    Memoria: {memorie.id}
+                </Typography>
+                {memorie.date}
+                <Moment format="YYYY/MM/DD">
+                    {memorie.date}
+                </Moment>
+                <Moment date={dateToFormat} />
 
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '30px' }}>
-                {currentSlide !== 0 ? <BackArrow previousImage={actions.togglePrev} /> : ''}
-                {memorie.sentences.map((sentence, key) => {
-                    if (memorie.sentences.indexOf(sentence) === currentSlide) {
-                        return (
-                            <div key={sentence.id} style={{ display: 'md4' }}>
-                                <MemorieCard
-                                    title={sentence.keywords[0]}
-                                    resume={sentence.keywords[1]}
-                                    text={sentence.text}
-                                    image={sentence.images[0]}
-                                    keyword={sentence.keywords[0]}
-                                ></MemorieCard>
-                            </div>
-                        )
-                    } else {
-                        return ''
-                    }
-                })}
-                {currentSlide !== (memorie.sentences.length - 1) ? <NextArrow nextImage={actions.toggleNext} /> : ''}
-            </div>
+                <p>Dia: {memorie.id}</p>
+                <p>Tema: {memorie.searchTerm}</p>
 
+                <p><b>Frase do Dia</b></p>
 
-            <p><b>Frase do Dia</b></p>
-            <p>{memorie.sourceContentSanitized}</p>
+                <Typography paragraph>
+                    {memorie.sourceContentSanitized}
+                </Typography>
 
-
-            {/* <img src={user.avatar_url} alt={user.name} width="80" style={{ borderRadius: 40 }} />
-            <h1>{user.name}</h1>
-            <p>{user.bio}</p> */}
-        </div>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '30px' }}>
+                    {currentSlide !== 0 ? <BackArrow previousImage={actions.togglePrev} /> : ''}
+                    {memorie.sentences.map((sentence, key) => {
+                        if (memorie.sentences.indexOf(sentence) === currentSlide) {
+                            return (
+                                <div key={sentence.id} style={{ display: 'md4' }}>
+                                    <MemorieCard
+                                        title={sentence.keywords[0]}
+                                        resume={sentence.keywords[1]}
+                                        text={sentence.text}
+                                        image={sentence.images[0]}
+                                        keyword={sentence.keywords[0]}
+                                    ></MemorieCard>
+                                </div>
+                            )
+                        } else {
+                            return ''
+                        }
+                    })}
+                    {currentSlide !== (memorie.sentences.length - 1) ? <NextArrow nextImage={actions.toggleNext} /> : ''}
+                </div>
+            </form>
+        </Container>
     )
 }
 

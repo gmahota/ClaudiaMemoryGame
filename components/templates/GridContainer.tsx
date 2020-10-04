@@ -19,8 +19,7 @@ const useStyles = makeStyles((_: Theme) =>(
 
 type Props = {
   children: React.ReactNode
-  className?: string,
-  justify?:string
+  className?: string
 }
 
 export const GridContainer = function GridContainer(props: Props) {

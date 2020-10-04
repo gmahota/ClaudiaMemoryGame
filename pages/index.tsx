@@ -63,7 +63,7 @@ export default function Home({ org,props }) {
     <div>
       <Header
         brand="Projeto Memorabilia"
-        rightLinks={<HeaderLinks />}
+        rightLinks={<HeaderLinks/>}
         fixed
         color="transparent"
         changeColorOnScroll={{

@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 type Props = {
-  children: React.ReactNode
+  children?: React.ReactNode
   className?: string,
   title?: string,
   resume?: string,
