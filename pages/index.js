@@ -1,6 +1,12 @@
+import { Parallax } from "../components/templates"
+
 export default function Home({org}){
+  
   return(
     <div>
+      <Parallax image="https://mahotaservicos.com/wp-content/uploads/2020/10/nextjs_header.jpg" >
+      </Parallax>
+      
       <h1>{org.login}</h1>
       <h2>{org.description}</h2>
 
