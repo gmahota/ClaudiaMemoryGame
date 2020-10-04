@@ -9,24 +9,51 @@ import {
     Memories,
     getMemorie
 } from '../../assets/data/memories'
+
 import { MemorieCard } from "../../components/Card"
+import { Parallax, ImageGridList,GridContainer, GridItem } from "../../components/templates"
+
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+
+// Naterial Ui-Import
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 
+import { container } from "../../assets/jss/nextjs-material-kit.js";
 import Moment from 'react-moment';
+
+
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    container: {
-      display: 'flex',
-      flexWrap: 'wrap',
+      container,
+      brand: {
+      color: "#FFFFFF",
+      textAlign: "left"
+    },
+    title: {
+      fontSize: "4.2rem",
+      fontWeight: 600,
+      display: "inline-block",
+      position: "relative"
+    },
+    subtitle: {
+      fontSize: "1.313rem",
+      maxWidth: "510px",
+      margin: "10px 0 0"
     },
     textField: {
       marginLeft: theme.spacing(1),
       marginRight: theme.spacing(1),
       width: 200,
     },
+    gridList: {
+        width: 500,
+        height: 450,
+        paddingTop:20
+      }
   }),
 );
 
@@ -90,41 +117,43 @@ export default function Member({ memorie }) {
     )
     
     const dateToFormat = new Date(memorie.date);
+    
+    var imagesData = getAllImages(memorie);
 
     return (
         <Container maxWidth="sm">
-            <form className={classes.container} noValidate>
-                <Typography variant="subtitle1">
-                    Memoria: {memorie.id}
-                </Typography>
-                {memorie.date}
-                <Moment format="YYYY/MM/DD">
-                    {memorie.date}
-                </Moment>
-                <Moment date={dateToFormat} />
 
-                <p>Dia: {memorie.id}</p>
-                <p>Tema: {memorie.searchTerm}</p>
-
-                <p><b>Frase do Dia</b></p>
-
-                <Typography paragraph>
-                    {memorie.sourceContentSanitized}
-                </Typography>
-
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '30px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '10px',marginBottom:'20px', position:'relative' }}>
                     {currentSlide !== 0 ? <BackArrow previousImage={actions.togglePrev} /> : ''}
                     {memorie.sentences.map((sentence, key) => {
                         if (memorie.sentences.indexOf(sentence) === currentSlide) {
                             return (
-                                <div key={sentence.id} style={{ display: 'md4' }}>
-                                    <MemorieCard
+                                <div key={sentence.id} >
+                                
+                                    <Parallax
+                                        image={sentence.images[0]}
+                                    >
+                                        <div className={classes.container}>
+                                            <GridContainer>
+                                                <GridItem>
+                                                <div className={classes.brand}>
+                                                    <h3 className={classes.subtitle}>
+                                                    Uma das Ideias da Claudia.
+                                                    </h3>
+                                                    <h4>Atenção isto é um protopito(20% do projeto), não é a versão final!!!</h4>
+                                                </div>
+                                                </GridItem>
+                                            </GridContainer>
+                                        </div>
+                                    </Parallax>
+
+                                    {/* <MemorieCard
                                         title={sentence.keywords[0]}
                                         resume={sentence.keywords[1]}
                                         text={sentence.text}
                                         image={sentence.images[0]}
                                         keyword={sentence.keywords[0]}
-                                    ></MemorieCard>
+                                    ></MemorieCard> */}
                                 </div>
                             )
                         } else {
@@ -133,7 +162,32 @@ export default function Member({ memorie }) {
                     })}
                     {currentSlide !== (memorie.sentences.length - 1) ? <NextArrow nextImage={actions.toggleNext} /> : ''}
                 </div>
-            </form>
+
+                {/* <Typography variant="subtitle1">
+                    Memoria: {memorie.id}
+                </Typography>
+                
+                <p>Dia: {memorie.id}</p>
+                <p>Tema: {memorie.searchTerm}</p>
+
+                <p><b>Frase do Dia</b></p>
+
+                <Typography paragraph>
+                    {memorie.sourceContentSanitized}
+                </Typography> */}
+
+                
+            <div className={classes.container} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center',marginTop: '10px',marginBottom:'20px', position:'relative' }}>
+                
+                <p>  Like Instagram, Atenção é um esboço da versão final seguindo esta linha</p>
+                <p> Seguindo a ideia da imagem com um scroll, Atenção é um esboço da versão final seguindo esta linha</p>
+            
+            </div>
+
+            <div className={classes.container} style={{ display: 'flex'}}>
+                <ImageGridList  imageData = {imagesData} />
+            </div>
+        
         </Container>
     )
 }
@@ -171,5 +225,22 @@ export const getStaticProps: GetStaticProps = async (context) => {
     }
 }
 
+const getAllImages = function(memorie:any){
+    try{
+        const images = [];
 
+        memorie.sentences.map((sentence, key) => {
+            sentence.images.map((image,key)=>{
+                images.push({
+                    img:image,
+                    title:sentence.keywords[0]
+                })
+            })
+        });
+
+        return images;
+    }catch(e){
+
+    }
+}
 
