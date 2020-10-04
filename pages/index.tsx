@@ -82,6 +82,7 @@ export default function Home({ org,props }) {
                 <h3 className={classes.subtitle}>
                 Objetos, momentos dignos de serem lembrados ou aqueles que estão guardados na memória.
                 </h3>
+                <h4>Atenção isto é um protopito(20% do projeto), não é a versão final!!!</h4>
               </div>
             </GridItem>
           </GridContainer>
