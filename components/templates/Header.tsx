@@ -139,7 +139,7 @@ const useStyles = makeStyles((_: Theme) => (
       backgroundColor: "transparent !important",
       boxShadow: "none",
       paddingTop: "25px",
-      color: "#FFFFFF"
+      //color: "#FFFFFF"
     },
     dark: {
       color: "#FFFFFF",
