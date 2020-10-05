@@ -123,61 +123,16 @@ export default function Member({ memorie }) {
     return (
         <div>
 
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '10px',marginBottom:'10px', position:'fixed' }}>
-                    {currentSlide !== 0 ? <BackArrow previousImage={actions.togglePrev} /> : ''}
-                    {memorie.sentences.map((sentence, key) => {
-                        if (memorie.sentences.indexOf(sentence) === currentSlide) {
-                            return (
-                                <div key={sentence.id} >
-                                
-                                    <Parallax
-                                        image={sentence.images[0]}
-                                    >
-                                        <div className={classes.container}>
-                                            <GridContainer>
-                                                <GridItem>
-                                                <div className={classes.brand}>
-                                                    <h3 className={classes.subtitle}>
-                                                    Uma das Ideias da Claudia.
-                                                    </h3>
-                                                    <h4>Atenção isto é um protopito(20% do projeto), não é a versão final!!!</h4>
-                                                </div>
-                                                </GridItem>
-                                            </GridContainer>
-                                        </div>
-                                    </Parallax>
-
-                                    {/* <MemorieCard
-                                        title={sentence.keywords[0]}
-                                        resume={sentence.keywords[1]}
-                                        text={sentence.text}
-                                        image={sentence.images[0]}
-                                        keyword={sentence.keywords[0]}
-                                    ></MemorieCard> */}
-                                </div>
-                            )
-                        } else {
-                            return ''
-                        }
-                    })}
-                    {currentSlide !== (memorie.sentences.length - 1) ? <NextArrow nextImage={actions.toggleNext} /> : ''}
-                </div>
-
-                {/* <Typography variant="subtitle1">
-                    Memoria: {memorie.id}
-                </Typography>
+            <div className={classes.container} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center',marginTop: '10px',marginBottom:'20px', position:'relative' }}>
                 
-                <p>Dia: {memorie.id}</p>
-                <p>Tema: {memorie.searchTerm}</p>
-
-                <p><b>Frase do Dia</b></p>
-
-                <Typography paragraph>
-                    {memorie.sourceContentSanitized}
-                </Typography> */}
-
-                
+                <p>  Like Instagram, Atenção é um esboço da versão final seguindo esta linha</p>
+                <p> Seguindo a ideia da imagem com um scroll, Atenção é um esboço da versão final seguindo esta linha</p>
             
+            </div>
+
+            <div className={classes.container} style={{ display: 'flex'}}>
+                <ImageGridList  imageData = {imagesData} />
+            </div>
         
         </div>
     )

@@ -191,6 +191,7 @@ export const HeaderLinks = function HeaderLinks(props: Props) {
       </ListItem>
 
       <ListItem className={classes.listItem}>
+      <Link href="/instagram/1">
       <RegularButton
           href="https://www.creative-tim.com/product/nextjs-material-kit?ref=njsmk-navbar"
           color="transparent"
@@ -200,6 +201,7 @@ export const HeaderLinks = function HeaderLinks(props: Props) {
 
           <Apps  /> Experiencia
         </RegularButton>
+        </Link>
         {/* <CustomDropdown
           noLiPadding
           navDropdown
