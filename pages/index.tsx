@@ -12,27 +12,29 @@ import {
 } from "../components/templates"
 import { SectionBasics } from "../pages-sections/Components-Sections/SectionBasics";
 
+import Link from "next/link";
+import { RegularButton } from "../components/CustomButtons/RegularButton";
 
 const useStyles = makeStyles((_: Theme) => (
   createStyles({
     container,
     brand: {
-      color: "#FFFFFF",
+      //color: "#FFFFFF",
       textAlign: "left"
     },
     title: {
-      fontSize: "4.2rem",
+      fontSize: "2.2rem",
       fontWeight: 600,
       display: "inline-block",
       position: "relative"
     },
     subtitle: {
-      fontSize: "1.313rem",
+      fontSize: "0.5rem",
       maxWidth: "510px",
       margin: "10px 0 0"
     },
     main: {
-      background: "#FFFFFF",
+      //background: "#FFFFFF",
       position: "relative",
       zIndex: 3
     },
@@ -78,12 +80,26 @@ export default function Home({ org,props }) {
           <GridContainer>
             <GridItem>
               <div className={classes.brand}>
-                <h1 className={classes.title}>Memorabilia</h1>
+                 <h1 className={classes.title}> 
+                 <Link href="/memories/1">
+                    <RegularButton
+                      color="transparent"
+                      target="_blank"
+                    >
+                      <i className=" fas fa-play-circle" /> Performance
+                  </RegularButton>
+                </Link>
+                
+                {/* Memorabilia */}
+                </h1> 
                 <h3 className={classes.subtitle}>
                 Objetos, momentos dignos de serem lembrados ou aqueles que estão guardados na memória.
                 </h3>
-                <h4>Atenção isto é um protopito(20% do projeto), não é a versão final!!!</h4>
+                <h4 className={classes.subtitle}>Atenção isto é um protopito(20% do projeto), não é a versão final!!!</h4>
+
+                
               </div>
+
             </GridItem>
           </GridContainer>
         </div>
