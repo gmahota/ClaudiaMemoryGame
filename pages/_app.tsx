@@ -4,7 +4,8 @@ import Head from 'next/head';
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { MuiTheme } from "../components/MuiTheme"
-import './styles.css'
+
+import { GlobalStyles } from './GlobalStyles'
 
 export default function App({ Component, pageProps }) {
 
@@ -26,6 +27,7 @@ export default function App({ Component, pageProps }) {
       <ThemeProvider theme={MuiTheme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
+        <GlobalStyles/>
         <Component {...pageProps} />
       </ThemeProvider>
     </React.Fragment>

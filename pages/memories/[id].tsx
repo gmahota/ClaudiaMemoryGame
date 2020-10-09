@@ -12,6 +12,7 @@ import {
 
 import { MemorieCard } from "../../components/Card"
 import { Parallax, ImageGridList,GridContainer, GridItem } from "../../components/templates"
+import { DefaultOverlayContent } from "../../components/DefaultOverlayContent" 
 
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
@@ -123,7 +124,7 @@ export default function Member({ memorie }) {
     return (
         <div>
 
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '10px',marginBottom:'10px', position:'fixed' }}>
+            <div style={{  alignItems: 'center', justifyContent: 'center', marginTop: '10px',marginBottom:'10px'}}>
                     {currentSlide !== 0 ? <BackArrow previousImage={actions.togglePrev} /> : ''}
                     {memorie.sentences.map((sentence, key) => {
                         if (memorie.sentences.indexOf(sentence) === currentSlide) {
@@ -134,16 +135,11 @@ export default function Member({ memorie }) {
                                         image={sentence.images[0]}
                                     >
                                         <div className={classes.container}>
-                                            <GridContainer>
-                                                <GridItem>
-                                                <div className={classes.brand}>
-                                                    <h3 className={classes.subtitle}>
-                                                    Uma das Ideias da Claudia.
-                                                    </h3>
-                                                    <h4>Atenção isto é um protopito(20% do projeto), não é a versão final!!!</h4>
-                                                </div>
-                                                </GridItem>
-                                            </GridContainer>
+                                            <DefaultOverlayContent 
+                                                label={sentence.keywords[0]} 
+                                                description= {sentence.keywords[1]} >
+                                            </DefaultOverlayContent>
+                                             
                                         </div>
                                     </Parallax>
 
