@@ -75,7 +75,7 @@ export default function Home({ org,props }) {
         {...rest}
 
       />
-      <Parallax image="https://mahotaservicos.com/wp-content/uploads/2020/10/nextjs_header.jpg" >
+      <Parallax image="/images/8-converted.png" >
         <div className={classes.container}>
           <GridContainer>
             <GridItem>
