@@ -9,21 +9,11 @@ import {
     getMemorie
 } from '../../assets/data/memories'
 
-import { MemorieCard } from "../../components/Card"
 import { Parallax, ImageGridList, GridContainer, GridItem } from "../../components/templates"
 import { DefaultOverlayContent } from "../../components/DefaultOverlayContent"
 
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-
-// Naterial Ui-Import
-import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
-
 import { container } from "../../assets/jss/nextjs-material-kit.js";
-import Moment from 'react-moment';
-
+import { motion } from "framer-motion"
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -125,7 +115,14 @@ export default function Member({ memorie }) {
             {memorie.sentences.map((sentence, key) => {
                 if (memorie.sentences.indexOf(sentence) === currentSlide) {
                     return (
-                        <div key={sentence.id} >
+                        <motion.div
+                            key={sentence.id}
+                            animate={{
+                                scale: [1, 2, 2, 1, 1],
+                                borderRadius: ["20%", "20%", "50%", "50%", "20%"],
+                                
+                              }}
+                        >
                             <Parallax
                                 image={sentence.images[0]}
                             >
@@ -139,7 +136,7 @@ export default function Member({ memorie }) {
                                 </DefaultOverlayContent>
 
                             </Parallax>
-                        </div>
+                        </motion.div>
                     )
                 } else {
                     return ''
