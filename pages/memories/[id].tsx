@@ -1,4 +1,3 @@
-import console from 'console';
 import { GetStaticProps, GetStaticPaths } from 'next';
 import { useRouter } from 'next/router'
 import { useCallback, useEffect, useState } from 'react';
@@ -11,8 +10,8 @@ import {
 } from '../../assets/data/memories'
 
 import { MemorieCard } from "../../components/Card"
-import { Parallax, ImageGridList,GridContainer, GridItem } from "../../components/templates"
-import { DefaultOverlayContent } from "../../components/DefaultOverlayContent" 
+import { Parallax, ImageGridList, GridContainer, GridItem } from "../../components/templates"
+import { DefaultOverlayContent } from "../../components/DefaultOverlayContent"
 
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
@@ -28,34 +27,34 @@ import Moment from 'react-moment';
 
 
 const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-      container,
-      brand: {
-      color: "#FFFFFF",
-      textAlign: "left"
-    },
-    title: {
-      fontSize: "4.2rem",
-      fontWeight: 600,
-      display: "inline-block",
-      position: "relative"
-    },
-    subtitle: {
-      fontSize: "1.313rem",
-      maxWidth: "510px",
-      margin: "10px 0 0"
-    },
-    textField: {
-      marginLeft: theme.spacing(1),
-      marginRight: theme.spacing(1),
-      width: 200,
-    },
-    gridList: {
-        width: 500,
-        height: 450,
-        paddingTop:20
-      }
-  }),
+    createStyles({
+        container,
+        brand: {
+            color: "#FFFFFF",
+            textAlign: "left"
+        },
+        title: {
+            fontSize: "4.2rem",
+            fontWeight: 600,
+            display: "inline-block",
+            position: "relative"
+        },
+        subtitle: {
+            fontSize: "1.313rem",
+            maxWidth: "510px",
+            margin: "10px 0 0"
+        },
+        textField: {
+            marginLeft: theme.spacing(1),
+            marginRight: theme.spacing(1),
+            width: 200,
+        },
+        gridList: {
+            width: 500,
+            height: 450,
+            paddingTop: 20
+        }
+    }),
 );
 
 type PropsButton = {
@@ -116,65 +115,37 @@ export default function Member({ memorie }) {
             <i className="fa fa-angle-right fa-2x" aria-hidden="true"></i>
         </div>
     )
-    
+
     const dateToFormat = new Date(memorie.date);
-    
+
     var imagesData = getAllImages(memorie);
 
     return (
         <div>
+            {memorie.sentences.map((sentence, key) => {
+                if (memorie.sentences.indexOf(sentence) === currentSlide) {
+                    return (
+                        <div key={sentence.id} >
+                            <Parallax
+                                image={sentence.images[0]}
+                            >
 
-            <div style={{  alignItems: 'center', justifyContent: 'center', marginTop: '10px',marginBottom:'10px'}}>
-                    {currentSlide !== 0 ? <BackArrow previousImage={actions.togglePrev} /> : ''}
-                    {memorie.sentences.map((sentence, key) => {
-                        if (memorie.sentences.indexOf(sentence) === currentSlide) {
-                            return (
-                                <div key={sentence.id} >
-                                
-                                    <Parallax
-                                        image={sentence.images[0]}
-                                    >
-                                        <div className={classes.container}>
-                                            <DefaultOverlayContent 
-                                                label={sentence.keywords[0]} 
-                                                description= {sentence.keywords[1]} >
-                                            </DefaultOverlayContent>
-                                             
-                                        </div>
-                                    </Parallax>
+                                <DefaultOverlayContent
+                                    label={sentence.keywords[0]}
+                                    description={sentence.keywords[1]}
+                                    previousImage={actions.togglePrev}
+                                    nextImage={actions.toggleNext}
+                                >
+                                </DefaultOverlayContent>
 
-                                    {/* <MemorieCard
-                                        title={sentence.keywords[0]}
-                                        resume={sentence.keywords[1]}
-                                        text={sentence.text}
-                                        image={sentence.images[0]}
-                                        keyword={sentence.keywords[0]}
-                                    ></MemorieCard> */}
-                                </div>
-                            )
-                        } else {
-                            return ''
-                        }
-                    })}
-                    {currentSlide !== (memorie.sentences.length - 1) ? <NextArrow nextImage={actions.toggleNext} /> : ''}
-                </div>
+                            </Parallax>
+                        </div>
+                    )
+                } else {
+                    return ''
+                }
+            })}
 
-                {/* <Typography variant="subtitle1">
-                    Memoria: {memorie.id}
-                </Typography>
-                
-                <p>Dia: {memorie.id}</p>
-                <p>Tema: {memorie.searchTerm}</p>
-
-                <p><b>Frase do Dia</b></p>
-
-                <Typography paragraph>
-                    {memorie.sourceContentSanitized}
-                </Typography> */}
-
-                
-            
-        
         </div>
     )
 }
@@ -212,21 +183,21 @@ export const getStaticProps: GetStaticProps = async (context) => {
     }
 }
 
-const getAllImages = function(memorie:any){
-    try{
+const getAllImages = function (memorie: any) {
+    try {
         const images = [];
 
         memorie.sentences.map((sentence, key) => {
-            sentence.images.map((image,key)=>{
+            sentence.images.map((image, key) => {
                 images.push({
-                    img:image,
-                    title:sentence.keywords[0]
+                    img: image,
+                    title: sentence.keywords[0]
                 })
             })
         });
 
         return images;
-    }catch(e){
+    } catch (e) {
 
     }
 }

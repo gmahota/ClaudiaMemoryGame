@@ -110,7 +110,6 @@ const Memories = [
 ]
 
 const getMemorie = function (id){
-    console.log(id)
     return Memories.find(x => x.id.toString() === id);
 }
 

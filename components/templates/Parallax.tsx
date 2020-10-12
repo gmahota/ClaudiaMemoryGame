@@ -23,8 +23,7 @@ const useStyles = makeStyles((_: Theme) =>(
       margin: "0",
       padding: "0",
       border: "0",
-      display: "flex",
-      alignItems: "center"
+      display: "flex"
     },
     filter: {
       "&:before": {
