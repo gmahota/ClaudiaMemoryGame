@@ -116,6 +116,7 @@ export default function Member({ memorie }) {
                 if (memorie.sentences.indexOf(sentence) === currentSlide) {
                     return (
                         <motion.div
+                        
                             key={sentence.id}
                             animate={{
                                 scale: [1, 2, 2, 1, 1],
